@@ -4,7 +4,7 @@ MAINTAINER GeoNode Development Team
 #
 # Set GeoServer version and data directory
 #
-ENV GEOSERVER_VERSION=2.15.x
+ENV GEOSERVER_VERSION=2.15.3
 ENV GEOSERVER_DATA_DIR="/geoserver_data/data"
 
 #
@@ -16,6 +16,8 @@ RUN cd /usr/local/tomcat/webapps \
     && unzip -q geoserver-${GEOSERVER_VERSION}.war -d geoserver \
     && rm geoserver-${GEOSERVER_VERSION}.war \
     && mkdir -p $GEOSERVER_DATA_DIR
+
+ADD server.xml /usr/local/tomcat/conf/server.xml
 
 VOLUME $GEOSERVER_DATA_DIR
 
